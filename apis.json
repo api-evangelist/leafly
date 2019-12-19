@@ -1,0 +1,77 @@
+{
+    "name": "Leafly",
+    "description": "<p>Leafly is the world&rsquo;s largest cannabis information resource,                  empowering people in legal cannabis markets to                  learn about the right products for their lifestyle and wellness needs,                  find those products safely and efficiently, and buy them from licensed                  and regulated dispensaries. Leafly was founded in 2010 as a destination to learn                 about the thousands of cannabis strains available to medical marijuana                 patients. Since then, the award-winning company has developed into an                 all-encompassing destination for medical marijuana patients, adult                 recreational consumers, advanced cannabis enthusiasts, and curious                 newcomers to cannabis, educating all types of consumers on which                 products are right for them and connecting them to the dispensaries                 that carry exactly what they&rsquo;re looking for.<\/p>",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/logos\/leafly_logo.png",
+    "tags": [
+        "api provider",
+        "cannabis",
+        "drugs",
+        "have api",
+        "marijuana",
+        "medical marijuana",
+        "new"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/leafly\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "Leafly",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/logos\/leafly_logo.png",
+            "humanURL": "http:\/\/www.leafly.com",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/leafly-openapi.json"
+                },
+                {
+                    "type": "x-postman-collecction",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/leafly-postman-collection.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Blog RSS",
+            "url": "http:\/\/blog.leaf.ly\/rss"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/leaf-ly"
+        },
+        {
+            "type": "Email",
+            "url": "support@Leafly.com"
+        },
+        {
+            "type": "Email",
+            "url": "legal@leafly.com"
+        },
+        {
+            "type": "Email",
+            "url": "legalip@leafly.com"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/#!\/leaf_ly"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/Leafly"
+        },
+        {
+            "type": "Website",
+            "url": "http:\/\/www.leafly.com"
+        },
+        {
+            "type": "Website",
+            "url": "http:\/\/www.leafly.com\/api\/documentation"
+        }
+    ]
+}
