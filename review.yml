@@ -1,0 +1,92 @@
+aid: leafly
+name: Leafly
+review:
+  question: Does Leafly expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-03'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Leafly's documented API surface is
+    request/response REST over HTTPS. The Menu Integration API is driven by the
+    retailer's system of record making HTTP POST/PUT/DELETE calls into Leafly
+    to push menu and inventory changes (a client-initiated push, not a
+    server-push transport), and reading with GET. The Order (Reservations) API
+    is partner-gated behind Cloudflare Access and is described as an order
+    integration for POS systems, not a realtime bidirectional channel. There is
+    no documented WebSocket (ws:// or wss://) or SSE endpoint on Leafly's own
+    API to model.
+findings:
+  summary: |
+    Leafly does not publish a documented public WebSocket API. Leafly is a
+    cannabis discovery marketplace. For retailers it exposes a documented Menu
+    Integration API (public ReDoc/OpenAPI at docs.leafly.io/menu-integration-docs
+    across V1, V1.1, and V2) and a partner-gated Order (Reservations) API. The
+    Menu Integration API is pure request/response REST over HTTPS: the system of
+    record pushes menu items via POST (full sync), PUT (upsert), and DELETE
+    (remove), and reads via GET /menu and GET /status. V2 authenticates with
+    OAuth2 client credentials (V1 used an API key); every call is scoped by a
+    Leafly-issued menu_integration_key. Menu updates are processed
+    asynchronously (up to ~2.5 min sandbox, ~5 min production), not streamed. No
+    realtime, bidirectional, or streaming WebSocket endpoint is documented on
+    Leafly's own API.
+  accessModel: |
+    Use requires a paid Leafly for Retailers subscription and a Leafly-issued
+    menu integration key; there is no self-serve public signup and no
+    consumer-facing strain/dispensary data API. POS / system-of-record providers
+    onboard through Partner Ops (partners@leafly.com); technical support is
+    api-support@leafly.com. The Menu Integration API is publicly documented; the
+    Order API's machine-readable spec sits behind Cloudflare Access and is
+    available to onboarded partners only.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.leafly.com/v2/menu_integration
+      documented: true
+      note: Menu Integration API V2. Sandbox base is https://api-sandbox.leafly.io/v2/menu_integration. V1 base uses /v1/menu_integration.
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.leafly.com/v2
+      documented: partial
+      note: Order (Reservations) API. Human docs public via ReDoc; machine-readable spec behind Cloudflare Access (partner-gated).
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere in Leafly's Menu Integration or Order API docs as of the review date.
+  endpointsConfirmedRest:
+    - GET    https://api.leafly.com/v2/menu_integration/{menu_integration_key}/menu
+    - POST   https://api.leafly.com/v2/menu_integration/{menu_integration_key}/menu/items
+    - PUT    https://api.leafly.com/v2/menu_integration/{menu_integration_key}/menu/items
+    - DELETE https://api.leafly.com/v2/menu_integration/{menu_integration_key}/menu/items
+    - GET    https://api.leafly.com/v2/menu_integration/{menu_integration_key}/status
+  endpointsModeled:
+    - The Order (Reservations) API endpoints are not enumerated here; its full
+      specification is behind Cloudflare Access. It is cataloged at the
+      capability level only, with no fabricated local OpenAPI.
+sources:
+  - url: https://docs.leafly.io/menu-integration-docs/v2.html
+    type: APIReference
+    note: Menu Integration API V2 - OAuth2 client credentials; GET/POST/PUT/DELETE menu endpoints; async processing latency; sync-frequency guidance.
+  - url: https://docs.leafly.io/menu-integration-docs/v1.html
+    type: APIReference
+    note: Menu Integration API V1 - API key auth; same endpoint shape under /v1/menu_integration.
+  - url: https://docs.leafly.io/reservations-api/order-api/
+    type: Documentation
+    note: Leafly Order (Reservations) API; requires Menu API V2; machine-readable spec behind Cloudflare Access.
+  - url: https://www.businesswire.com/news/home/20230926705189/en/Leafly-Announces-New-API-for-Order-Integration
+    type: Announcement
+    note: 2023 launch of the order integration API for POS providers.
+  - url: https://help.leafly.com/hc/en-us/categories/20959505132051-Developer-FAQs
+    type: Documentation
+    note: Developer FAQs and per-POS menu/order integration guides (BLAZE, Flowhub, Treez, Square, etc.).
+  - url: https://success.leafly.com/retail
+    type: Signup
+    note: Leafly for Retailers - paid subscription that grants the listing and API entitlement.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists. Leafly's own documented API is
+    request/response REST - a push-by-HTTP Menu Integration API and a
+    partner-gated Order API. No AsyncAPI document was created because there is no
+    server-push transport on Leafly's own API to model.

@@ -1,0 +1,78 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Leafly
+providerId: leafly
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Cannabis
+- Dispensary
+- Retail
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Leafly spend. Leafly's APIs are not billed on usage - there is
+  no per-call charge for the Menu Integration or Order APIs. Cost is driven by
+  the flat Leafly for Retailers subscription that grants the listing and API
+  entitlement, quoted by sales and tiered by market, product selection, and
+  service level (roughly hundreds to thousands of USD per month). POS / system-
+  of-record providers integrate the APIs at no separate fee through Partner Ops.
+  For a retailer, the relevant cost signals are the monthly subscription and the
+  business value of orders and traffic driven, rather than metered API
+  consumption.
+notes: >-
+  Subscription rates are not public and are not reconciled here. There is no
+  usage meter to allocate; costs are a fixed monthly subscription. Verify tiers
+  with Leafly sales during reconciliation.
+sources:
+- https://success.leafly.com/retail
+- https://docs.leafly.io/menu-integration-docs/v2.html
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Leafly
+serviceCategory: Marketing and Marketplace
+billingModel:
+  pricingCategory: Subscription-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Purchase
+  - Adjustment
+focusColumns:
+  ServiceName: Leafly for Retailers
+  ServiceCategory: Marketing and Marketplace
+  ProviderName: Leafly
+  PublisherName: Leafly
+  InvoiceIssuerName: Leafly
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Subscription-Based
+meters:
+- name: retail_subscription
+  description: Flat monthly Leafly for Retailers subscription that includes the menu listing and API entitlement.
+  unit: months
+  aggregation: sum
+  dimensions:
+  - account
+  - location
+  - market
+principles:
+- name: Visibility
+  description: Track the monthly subscription per dispensary location and market; API calls themselves carry no line-item cost.
+- name: Allocation
+  description: Map each subscription to the store location and market it lists so cost aligns to the revenue that listing drives.
+- name: Optimization
+  description: Right-size the subscription tier to the markets and products that matter; use included deals to drive orders without added cost; automate menu sync to protect the value of the listing.
+- name: Accountability
+  description: Assign an owner per location to review subscription spend against orders and traffic driven through Leafly.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

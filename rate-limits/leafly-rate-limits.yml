@@ -1,0 +1,59 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Leafly
+providerId: leafly
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Cannabis
+- Menu Sync
+- Rate Limiting
+- Quotas
+- POS Integration
+description: >-
+  Leafly does not publish fixed numeric per-minute request limits for the Menu
+  Integration API. Instead its documentation prescribes sync-frequency profiles:
+  the recommended profile is a full menu POST once per day plus individual or
+  batched PUT upserts and DELETEs as items change; an alternate profile is full
+  POST syncs several times per hour. Menu updates are processed asynchronously -
+  effects are not instantaneous, taking up to roughly 2.5 minutes in sandbox and
+  up to roughly 5 minutes in production, longer under load. Leafly monitors
+  integration health (documented in GET /status) and expects successful
+  200-level responses with automated, well-behaved request signatures.
+notes: >-
+  No numeric per-account or per-endpoint request-rate cap is documented as of the
+  review date; the governing controls are the prescribed sync-frequency profiles
+  and asynchronous processing latency. Verify current guidance in the V2 docs.
+sources:
+- https://docs.leafly.io/menu-integration-docs/v2.html
+- https://docs.leafly.io/menu-integration-docs/v1.html
+responseCodes:
+  success: 200
+limits:
+- name: Full Menu Sync (POST)
+  scope: integration
+  metric: requests
+  limit: once per day (recommended) or multiple times per hour (alternate profile)
+  notes: Full menu synchronization across all items.
+- name: Item Upsert / Delete (PUT / DELETE)
+  scope: integration
+  metric: requests
+  limit: as items change (individual or batched)
+  notes: Submit item-level updates and removals in near-real-time as the system of record changes.
+- name: Processing Latency
+  scope: integration
+  metric: seconds
+  limit: '~150 (sandbox), ~300 (production)'
+  notes: Menu updates are processed asynchronously; effects are not instantaneous and vary with system load.
+policies:
+- name: Sync Frequency Profiles
+  description: Use daily full POST plus batched PUT/DELETE (recommended), or full POST several times per hour (alternate).
+- name: Automated, Well-Behaved Clients
+  description: Leafly expects request signatures indicating an automated application (not manual Postman/curl) that solicits and honors 200-level responses and corrects errors on subsequent requests.
+- name: Field Validation
+  description: Use item id fields consistently, keep variant inventory reflecting stock, and set strain and cannabinoid values to null when absent.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

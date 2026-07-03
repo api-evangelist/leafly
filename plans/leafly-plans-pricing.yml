@@ -1,0 +1,87 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Leafly
+providerId: leafly
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Cannabis
+- Dispensary
+- Retail
+- Menu Sync
+- Plans
+description: >-
+  Leafly does not sell API access as a standalone metered product. The Menu
+  Integration API and the Order (Reservations) API are entitlements of a paid
+  Leafly for Retailers subscription: a retailer subscribes, Leafly issues a
+  menu integration key, and the retailer's POS / system-of-record provider uses
+  the API to keep the menu and orders in sync at no separate per-call fee.
+  Subscription pricing is not published - it is quoted by Leafly's sales team
+  and varies by geography, product selection, and level of service, generally
+  tiered from a few hundred to a few thousand US dollars per month. Unlike some
+  competitors, Leafly uses fixed subscription tiers rather than auction-based
+  bidding. POS providers integrate against the API at no charge through the
+  Partner Ops program.
+notes: >-
+  Exact subscription tiers and prices are not public and are not reconciled
+  here. Deals (sales, discounts, BOGO) are included in the subscription and do
+  not add cost. Verify current retail pricing with Leafly sales
+  (success.leafly.com/retail) during reconciliation.
+sources:
+- https://success.leafly.com/retail
+- https://help.leafly.com/hc/en-us/articles/360035922574-What-is-the-cost-of-advertising-on-Leafly
+- https://docs.leafly.io/menu-integration-docs/v2.html
+plans:
+- id: leafly-retail-subscription
+  name: Leafly for Retailers Subscription
+  type: paid
+  description: >-
+    Paid dispensary subscription that lists the retailer on Leafly and unlocks
+    the menu, online ordering, deals, and the Menu Integration API entitlement.
+    Pricing is quoted by sales and tiered by market, product selection, and
+    service level (roughly hundreds to thousands of USD per month).
+  entries:
+  - label: Retail Subscription
+    name: retail_subscription
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: US
+    unit: 1
+    price: contact sales (quoted by market; typically several hundred to several thousand USD/month)
+    userMultiplied: false
+  elements:
+  - name: Leafly Menu Listing
+  - name: Menu Integration API Access
+  - name: Online Ordering
+  - name: Deals (Sales, Discounts, BOGO)
+  - name: POS Menu Sync
+- id: leafly-order-api-partner
+  name: Order API Partner Integration
+  type: free
+  description: >-
+    POS / system-of-record providers integrate the Order (Reservations) API and
+    Menu Integration API at no charge through Leafly Partner Ops. Requires the
+    provider to support V2 of the Menu Integration API. The retailer still needs
+    an active paid subscription for orders to flow.
+  entries:
+  - label: Partner API Integration
+    name: partner_integration
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: no separate fee (partner onboarding via partners@leafly.com)
+    userMultiplied: false
+  elements:
+  - name: Menu Integration API (V2)
+  - name: Order / Reservations API
+  - name: Sandbox Environment
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
