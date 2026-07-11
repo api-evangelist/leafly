@@ -87,6 +87,8 @@ apis:
     capability level rather than modeled into a local OpenAPI, to avoid
     fabricating a surface. Contact partners@leafly.com for access.
 common:
+- type: OAuthScopes
+  url: scopes/leafly-scopes.yml
 - type: Website
   url: https://www.leafly.com
 - type: Documentation
@@ -103,6 +105,8 @@ common:
   url: rate-limits/leafly-rate-limits.yml
 - type: FinOps
   url: finops/leafly-finops.yml
+- url: https://www.leafly.com/feed
+  type: Blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

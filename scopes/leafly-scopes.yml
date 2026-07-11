@@ -1,0 +1,15 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/leafly-menu-integration-openapi.yml
+docs: https://docs.leafly.io/menu-integration-docs/v2.html
+note: Leafly's Menu Integration API V2 uses the OAuth2 client credentials grant
+  with no published scopes - the upstream OpenAPI (https://docs.leafly.io/menu-integration-docs/v2.json)
+  declares an empty scopes map and access is instead tied to a Leafly-issued
+  menu_integration_key identifying the retailer.
+schemes:
+- name: OAuth2ClientCredentials
+  source: openapi/leafly-menu-integration-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.leafly.com/oauth/token
+scopes: []
