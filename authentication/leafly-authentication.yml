@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/leafly-menu-integration-openapi.yml
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - clientCredentials
+schemes:
+- name: OAuth2ClientCredentials
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.leafly.com/oauth/token
+    scopes: 0
+  sources:
+  - openapi/leafly-menu-integration-openapi.yml
