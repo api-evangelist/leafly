@@ -87,6 +87,8 @@ apis:
     capability level rather than modeled into a local OpenAPI, to avoid
     fabricating a surface. Contact partners@leafly.com for access.
 common:
+- type: AgenticAccess
+  url: agentic-access/leafly-agentic-access.yml
 - type: DomainSecurity
   url: security/leafly-domain-security.yml
 - type: Authentication

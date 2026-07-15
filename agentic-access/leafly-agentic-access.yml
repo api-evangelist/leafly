@@ -1,0 +1,84 @@
+generated: '2026-07-15'
+method: generated
+source: openapi/leafly-menu-integration-openapi.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 5
+  by_action_class:
+    connected: 2
+    acting: 3
+  by_consequence:
+    read: 2
+    write: 3
+  human_in_the_loop_required: 0
+operations:
+- path: /{menu_integration_key}/menu
+  method: get
+  operationId: getMenu
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /{menu_integration_key}/menu/items
+  method: post
+  operationId: syncMenuItems
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /{menu_integration_key}/menu/items
+  method: put
+  operationId: upsertMenuItems
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /{menu_integration_key}/menu/items
+  method: delete
+  operationId: deleteMenuItems
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /{menu_integration_key}/status
+  method: get
+  operationId: getStatus
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
