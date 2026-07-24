@@ -1,19 +1,10 @@
 openapi: 3.0.0
 info:
-  title: Leafly Menu Integration API
+  title: Leafly Integration Menu API
   version: '2.0'
-  description: >-
-    Near-real-time menu integration API for keeping a dispensary's Leafly menu
-    in sync with its system of record (POS). When menu items are edited or
-    inventory levels change, the system of record makes HTTP requests to the
-    menu integration URL with a JSON payload of menu items. Every call is scoped
-    by a Leafly-issued menu_integration_key path parameter. V2 authenticates
-    with OAuth2 client credentials.
+  description: 'Near-real-time menu integration API for keeping a dispensary''s Leafly menu in sync with its system of record (POS). When menu items are edited or inventory levels change, the system of record makes HTTP requests to the menu integration URL with a JSON payload of menu items. Every call is scoped by a Leafly-issued menu_integration_key path parameter. V2 authenticates with OAuth2 client credentials.
 
-    This OpenAPI document was authored by API Evangelist from Leafly's public
-    ReDoc documentation (https://docs.leafly.io/menu-integration-docs/v2.html)
-    for cataloging purposes. It reflects the documented endpoints and the item
-    schema; it is not the vendor's own distributed specification.
+    This OpenAPI document was authored by API Evangelist from Leafly''s public ReDoc documentation (https://docs.leafly.io/menu-integration-docs/v2.html) for cataloging purposes. It reflects the documented endpoints and the item schema; it is not the vendor''s own distributed specification.'
   contact:
     name: Leafly API Support
     email: api-support@leafly.com
@@ -25,6 +16,8 @@ servers:
   description: Sandbox
 security:
 - OAuth2ClientCredentials: []
+tags:
+- name: Menu
 paths:
   /{menu_integration_key}/menu:
     get:
@@ -36,13 +29,12 @@ paths:
       responses:
         '200':
           description: The current menu.
+      tags:
+      - Menu
   /{menu_integration_key}/menu/items:
     post:
       summary: Synchronize Menu
-      description: >-
-        Full menu synchronization by id - submit the complete set of items. Full
-        syncs are recommended once per day (or, in an alternate profile, several
-        times per hour).
+      description: Full menu synchronization by id - submit the complete set of items. Full syncs are recommended once per day (or, in an alternate profile, several times per hour).
       operationId: syncMenuItems
       parameters:
       - $ref: '#/components/parameters/MenuIntegrationKey'
@@ -55,6 +47,8 @@ paths:
       responses:
         '200':
           description: Menu accepted for synchronization.
+      tags:
+      - Menu
     put:
       summary: Upsert Menu Items
       description: Create or update individual items or batches of items.
@@ -70,6 +64,8 @@ paths:
       responses:
         '200':
           description: Items upserted.
+      tags:
+      - Menu
     delete:
       summary: Delete Menu Items
       description: Remove items from the Leafly menu.
@@ -85,45 +81,13 @@ paths:
       responses:
         '200':
           description: Items deleted.
-  /{menu_integration_key}/status:
-    get:
-      summary: Get menu integration status
-      description: Report the health and status of the menu integration.
-      operationId: getStatus
-      parameters:
-      - $ref: '#/components/parameters/MenuIntegrationKey'
-      responses:
-        '200':
-          description: Integration status.
+      tags:
+      - Menu
 components:
-  securitySchemes:
-    OAuth2ClientCredentials:
-      type: oauth2
-      flows:
-        clientCredentials:
-          tokenUrl: https://api.leafly.com/oauth/token
-          scopes: {}
-  parameters:
-    MenuIntegrationKey:
-      name: menu_integration_key
-      in: path
-      required: true
-      description: Leafly-issued key that scopes the request to a single dispensary integration.
-      schema:
-        type: string
   schemas:
-    MenuItems:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/MenuItem'
     MenuItem:
       type: object
-      description: >-
-        A single menu item. Strain and cannabinoid values should be set to null
-        when absent; variants carry the inventory and pricing.
+      description: A single menu item. Strain and cannabinoid values should be set to null when absent; variants carry the inventory and pricing.
       properties:
         id:
           type: string
@@ -146,3 +110,25 @@ components:
           type:
           - string
           - 'null'
+    MenuItems:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/MenuItem'
+  parameters:
+    MenuIntegrationKey:
+      name: menu_integration_key
+      in: path
+      required: true
+      description: Leafly-issued key that scopes the request to a single dispensary integration.
+      schema:
+        type: string
+  securitySchemes:
+    OAuth2ClientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.leafly.com/oauth/token
+          scopes: {}
