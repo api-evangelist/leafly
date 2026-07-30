@@ -16,7 +16,20 @@ description: >-
   partners. Actual use requires a paid Leafly for Retailers subscription and a
   Leafly-issued menu integration key - there is no self-serve public signup or
   consumer-facing data API.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: approval
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Requires approval
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/leafly.png
 tags:
 - Cannabis
 - Dispensary
@@ -30,35 +43,6 @@ created: '2026-07-03'
 modified: '2026-07-03'
 specificationVersion: '0.19'
 apis:
-- aid: leafly:leafly-menu-integration-api
-  name: Leafly Menu Integration API
-  tags:
-  - Menu Sync
-  - Dispensary
-  - Inventory
-  - POS Integration
-  - Cannabis
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.leafly.io/menu-integration-docs/v2.html
-  baseURL: https://api.leafly.com/v2/menu_integration
-  properties:
-  - url: https://docs.leafly.io/menu-integration-docs/v2.html
-    type: Documentation
-  - url: https://docs.leafly.io/menu-integration-docs/v2.html
-    type: APIReference
-  - url: openapi/leafly-menu-integration-openapi.yml
-    type: OpenAPI
-  description: >-
-    Near-real-time menu synchronization API for dispensaries and their POS /
-    system-of-record providers. A retailer's system pushes menu items - name,
-    type, brand, description, strain, cannabinoid values, per-variant inventory
-    and pricing, images, and pickup availability - to Leafly so the public
-    Leafly menu stays current. GET /menu reads the current menu, POST
-    /menu/items runs a full synchronization, PUT /menu/items upserts items,
-    DELETE /menu/items removes items, and GET /status reports integration
-    health. V2 authenticates with OAuth2 client credentials (V1 used an API
-    key); every call is scoped by a Leafly-issued menu_integration_key. V2 of
-    this Menu API is a prerequisite for the Leafly Order API.
 - aid: leafly:leafly-order-api
   name: Leafly Order API
   tags:
@@ -73,19 +57,45 @@ apis:
   properties:
   - url: https://docs.leafly.io/reservations-api/order-api/
     type: Documentation
-  - url: https://www.businesswire.com/news/home/20230926705189/en/Leafly-Announces-New-API-for-Order-Integration
+  - url: >-
+      https://www.businesswire.com/news/home/20230926705189/en/Leafly-Announces-New-API-for-Order-Integration
     type: Announcement
   description: >-
-    Order (Reservations) API that lets any cannabis POS provider integrate
-    Leafly online orders into its own system, taking ownership of the order
-    integration rather than relying on a bespoke Leafly-built connector.
-    Launched in beta in 2023, it requires the retailer to already run V2 of the
-    Menu Integration API. The full API reference is published via ReDoc at
-    docs.leafly.io/reservations-api/order-api/ but the machine-readable
-    specification sits behind Cloudflare Access, so endpoint-level detail is
-    only available to onboarded partners - endpoints here are documented at the
-    capability level rather than modeled into a local OpenAPI, to avoid
-    fabricating a surface. Contact partners@leafly.com for access.
+    Order (Reservations) API that lets any cannabis POS provider integrate Leafly online orders into its
+    own system, taking ownership of the order integration rather than relying on a bespoke Leafly-built
+    connector. Launched in beta in 2023, it requires the retailer to already run V2 of the Menu Integration
+    API. The full API reference is published via ReDoc at docs.leafly.io/reservations-api/order-api/ but
+    the machine-readable specification sits behind Cloudflare Access, so endpoint-level detail is only
+    available to onboarded partners - endpoints here are documented at the capability level rather than
+    modeled into a local OpenAPI, to avoid fabricating a surface. Contact partners@leafly.com for access.
+- aid: leafly:leafly-menu-api
+  name: Leafly Menu API
+  description: The Menu API from Leafly — 2 operation(s) for menu.
+  humanURL: https://docs.leafly.io/menu-integration-docs/v2.html
+  baseURL: https://api.leafly.com/v2/menu_integration
+  tags:
+  - Menu
+  properties:
+  - type: OpenAPI
+    url: openapi/leafly-menu-api-openapi.yml
+  - type: Documentation
+    url: https://docs.leafly.io/menu-integration-docs/v2.html
+  - type: APIReference
+    url: https://docs.leafly.io/menu-integration-docs/v2.html
+- aid: leafly:leafly-status-api
+  name: Leafly Status API
+  description: The Status API from Leafly — 1 operation(s) for status.
+  humanURL: https://docs.leafly.io/menu-integration-docs/v2.html
+  baseURL: https://api.leafly.com/v2/menu_integration
+  tags:
+  - Status
+  properties:
+  - type: OpenAPI
+    url: openapi/leafly-status-api-openapi.yml
+  - type: Documentation
+    url: https://docs.leafly.io/menu-integration-docs/v2.html
+  - type: APIReference
+    url: https://docs.leafly.io/menu-integration-docs/v2.html
 common:
 - type: AgenticAccess
   url: agentic-access/leafly-agentic-access.yml
