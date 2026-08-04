@@ -1,0 +1,16 @@
+{
+  "provider": "leafly",
+  "sources": [
+    "leafly-menu-api-openapi.yml",
+    "leafly-status-api-openapi.yml"
+  ],
+  "outputs": [
+    "leafly-menu-api-openapi.yml",
+    "leafly-status-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
