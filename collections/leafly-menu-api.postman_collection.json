@@ -1,0 +1,464 @@
+{
+  "item": [
+    {
+      "id": "b8253159-c128-4c96-947a-486b295240b2",
+      "name": "Menu",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "687cef89-ff80-4ff1-9154-bfef20a1663c",
+          "name": "Get Menu",
+          "request": {
+            "name": "Get Menu",
+            "description": {
+              "content": "Retrieve the current menu Leafly holds for the integration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":menu_integration_key",
+                "menu"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "menu_integration_key",
+                  "description": "(Required) Leafly-issued key that scopes the request to a single dispensary integration."
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2c6e8448-9812-4765-8f1e-e20e553ab3d3",
+              "name": "The current menu.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":menu_integration_key",
+                    "menu"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "menu_integration_key",
+                      "description": "(Required) Leafly-issued key that scopes the request to a single dispensary integration."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1dc9888f-0f99-4cfd-8e89-e2b6ed9283e8",
+          "name": "Synchronize Menu",
+          "request": {
+            "name": "Synchronize Menu",
+            "description": {
+              "content": "Full menu synchronization by id - submit the complete set of items. Full syncs are recommended once per day (or, in an alternate profile, several times per hour).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":menu_integration_key",
+                "menu",
+                "items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "menu_integration_key",
+                  "description": "(Required) Leafly-issued key that scopes the request to a single dispensary integration."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"strain\": \"<string,null>\",\n      \"brand\": \"<string>\",\n      \"description\": \"<string>\",\n      \"availableForPickup\": \"<boolean>\",\n      \"imageUrl\": \"<string,null>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"strain\": \"<string,null>\",\n      \"brand\": \"<string>\",\n      \"description\": \"<string>\",\n      \"availableForPickup\": \"<boolean>\",\n      \"imageUrl\": \"<string,null>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d35abd4c-0e84-4381-b86f-32409cea9876",
+              "name": "Menu accepted for synchronization.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":menu_integration_key",
+                    "menu",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "menu_integration_key",
+                      "description": "(Required) Leafly-issued key that scopes the request to a single dispensary integration."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"strain\": \"<string,null>\",\n      \"brand\": \"<string>\",\n      \"description\": \"<string>\",\n      \"availableForPickup\": \"<boolean>\",\n      \"imageUrl\": \"<string,null>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"strain\": \"<string,null>\",\n      \"brand\": \"<string>\",\n      \"description\": \"<string>\",\n      \"availableForPickup\": \"<boolean>\",\n      \"imageUrl\": \"<string,null>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d7203f9f-dbd4-4177-8a13-91a24e03f790",
+          "name": "Upsert Menu Items",
+          "request": {
+            "name": "Upsert Menu Items",
+            "description": {
+              "content": "Create or update individual items or batches of items.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":menu_integration_key",
+                "menu",
+                "items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "menu_integration_key",
+                  "description": "(Required) Leafly-issued key that scopes the request to a single dispensary integration."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"strain\": \"<string,null>\",\n      \"brand\": \"<string>\",\n      \"description\": \"<string>\",\n      \"availableForPickup\": \"<boolean>\",\n      \"imageUrl\": \"<string,null>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"strain\": \"<string,null>\",\n      \"brand\": \"<string>\",\n      \"description\": \"<string>\",\n      \"availableForPickup\": \"<boolean>\",\n      \"imageUrl\": \"<string,null>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a3ecd681-7d95-4b8b-8abc-014246912451",
+              "name": "Items upserted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":menu_integration_key",
+                    "menu",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "menu_integration_key",
+                      "description": "(Required) Leafly-issued key that scopes the request to a single dispensary integration."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"strain\": \"<string,null>\",\n      \"brand\": \"<string>\",\n      \"description\": \"<string>\",\n      \"availableForPickup\": \"<boolean>\",\n      \"imageUrl\": \"<string,null>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"strain\": \"<string,null>\",\n      \"brand\": \"<string>\",\n      \"description\": \"<string>\",\n      \"availableForPickup\": \"<boolean>\",\n      \"imageUrl\": \"<string,null>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a1a179a9-2b05-4836-9fb8-47fdca141184",
+          "name": "Delete Menu Items",
+          "request": {
+            "name": "Delete Menu Items",
+            "description": {
+              "content": "Remove items from the Leafly menu.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":menu_integration_key",
+                "menu",
+                "items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "menu_integration_key",
+                  "description": "(Required) Leafly-issued key that scopes the request to a single dispensary integration."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"strain\": \"<string,null>\",\n      \"brand\": \"<string>\",\n      \"description\": \"<string>\",\n      \"availableForPickup\": \"<boolean>\",\n      \"imageUrl\": \"<string,null>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"strain\": \"<string,null>\",\n      \"brand\": \"<string>\",\n      \"description\": \"<string>\",\n      \"availableForPickup\": \"<boolean>\",\n      \"imageUrl\": \"<string,null>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dead65e8-7fb5-4852-83e4-5493bcfd0b7c",
+              "name": "Items deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":menu_integration_key",
+                    "menu",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "menu_integration_key",
+                      "description": "(Required) Leafly-issued key that scopes the request to a single dispensary integration."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"strain\": \"<string,null>\",\n      \"brand\": \"<string>\",\n      \"description\": \"<string>\",\n      \"availableForPickup\": \"<boolean>\",\n      \"imageUrl\": \"<string,null>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"strain\": \"<string,null>\",\n      \"brand\": \"<string>\",\n      \"description\": \"<string>\",\n      \"availableForPickup\": \"<boolean>\",\n      \"imageUrl\": \"<string,null>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.leafly.com/v2/menu_integration",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.leafly.com/oauth/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f8e9c79c-d2ff-434c-a985-56f5a654e5e2",
+    "name": "Leafly Integration Menu API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Near-real-time menu integration API for keeping a dispensary's Leafly menu in sync with its system of record (POS). When menu items are edited or inventory levels change, the system of record makes HTTP requests to the menu integration URL with a JSON payload of menu items. Every call is scoped by a Leafly-issued menu_integration_key path parameter. V2 authenticates with OAuth2 client credentials.\nThis OpenAPI document was authored by API Evangelist from Leafly's public ReDoc documentation (https://docs.leafly.io/menu-integration-docs/v2.html) for cataloging purposes. It reflects the documented endpoints and the item schema; it is not the vendor's own distributed specification.\n\nContact Support:\n Name: Leafly API Support\n Email: api-support@leafly.com",
+      "type": "text/plain"
+    }
+  }
+}

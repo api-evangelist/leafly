@@ -1,0 +1,117 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Leafly Integration Menu API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.leafly.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Menu",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Menu",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.leafly.com/v2/menu_integration/:menu_integration_key/menu",
+            "params": [
+              {
+                "name": "menu_integration_key",
+                "value": "",
+                "type": "path",
+                "description": "Leafly-issued key that scopes the request to a single dispensary integration."
+              }
+            ]
+          },
+          "docs": "Retrieve the current menu Leafly holds for the integration."
+        },
+        {
+          "info": {
+            "name": "Synchronize Menu",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.leafly.com/v2/menu_integration/:menu_integration_key/menu/items",
+            "params": [
+              {
+                "name": "menu_integration_key",
+                "value": "",
+                "type": "path",
+                "description": "Leafly-issued key that scopes the request to a single dispensary integration."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Full menu synchronization by id - submit the complete set of items. Full syncs are recommended once per day (or, in an alternate profile, several times per hour)."
+        },
+        {
+          "info": {
+            "name": "Upsert Menu Items",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.leafly.com/v2/menu_integration/:menu_integration_key/menu/items",
+            "params": [
+              {
+                "name": "menu_integration_key",
+                "value": "",
+                "type": "path",
+                "description": "Leafly-issued key that scopes the request to a single dispensary integration."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create or update individual items or batches of items."
+        },
+        {
+          "info": {
+            "name": "Delete Menu Items",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.leafly.com/v2/menu_integration/:menu_integration_key/menu/items",
+            "params": [
+              {
+                "name": "menu_integration_key",
+                "value": "",
+                "type": "path",
+                "description": "Leafly-issued key that scopes the request to a single dispensary integration."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove items from the Leafly menu."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
