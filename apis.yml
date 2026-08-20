@@ -38,6 +38,15 @@ tags:
 - Retail
 - Marketplace
 - Strains
+- E-Commerce
+tags_raw:
+- Cannabis
+- Dispensary
+- Menu Sync
+- POS Integration
+- Retail
+- Marketplace
+- Strains
 - Ecommerce
 created: '2026-07-03'
 modified: '2026-07-03'
@@ -46,6 +55,12 @@ apis:
 - aid: leafly:leafly-order-api
   name: Leafly Order API
   tags:
+  - Order
+  - Reservations
+  - POS Integration
+  - Cannabis
+  - Partner
+  tags_raw:
   - Orders
   - Reservations
   - POS Integration
@@ -74,6 +89,8 @@ apis:
   humanURL: https://docs.leafly.io/menu-integration-docs/v2.html
   baseURL: https://api.leafly.com/v2/menu_integration
   tags:
+  - Menus
+  tags_raw:
   - Menu
   properties:
   - type: OpenAPI
