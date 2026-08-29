@@ -1,0 +1,27 @@
+slug: leafly
+provider: Leafly
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Retail & Consumer Goods
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Menu
+  spec_file: leafly-menu-api-openapi.yml
+  capability_id: BC-2370.30
+  capability_id_l1: BC-2370
+  capability_name: Channel Syndication Management
+  confidence: 0.78
+  evidence: '''Near-real-time menu integration API for keeping a dispensary''s Leafly menu in sync with
+    its system of record (POS)''; POST /{menu_integration_key}/menu/items syncMenuItems ''Synchronize
+    Menu'''
+  reason: The operations push item, variant, inventory and pricing content from the retailer's system
+    of record to an external consumer-facing marketplace listing — publication of product content to a
+    third-party channel, i.e. channel syndication.

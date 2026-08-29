@@ -126,6 +126,9 @@ apis:
   - type: APIReference
     url: https://docs.leafly.io/menu-integration-docs/v2.html
 common:
+- type: CapabilityMap
+  url: capabilities/leafly-capability-edges.yml
+  name: Leafly Business Capability Map
 - type: AgenticAccess
   url: agentic-access/leafly-agentic-access.yml
 - type: DomainSecurity
