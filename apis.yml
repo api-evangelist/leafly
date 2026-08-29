@@ -16,6 +16,18 @@ description: >-
   partners. Actual use requires a paid Leafly for Retailers subscription and a
   Leafly-issued menu integration key - there is no self-serve public signup or
   consumer-facing data API.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: approval
