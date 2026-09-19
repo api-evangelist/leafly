@@ -49,7 +49,7 @@ tags:
 - POS Integration
 - Retail
 - Marketplace
-- Strains
+- Strain
 - E-Commerce
 tags_raw:
 - Cannabis
@@ -71,7 +71,7 @@ apis:
   - Reservations
   - POS Integration
   - Cannabis
-  - Partner
+  - Partners
   tags_raw:
   - Orders
   - Reservations
