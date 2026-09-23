@@ -1,10 +1,8 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Leafly Integration Menu Status API
+  title: Leafly Menu Integration Status API
   version: '2.0'
-  description: 'Near-real-time menu integration API for keeping a dispensary''s Leafly menu in sync with its system of record (POS). When menu items are edited or inventory levels change, the system of record makes HTTP requests to the menu integration URL with a JSON payload of menu items. Every call is scoped by a Leafly-issued menu_integration_key path parameter. V2 authenticates with OAuth2 client credentials.
-
-    This OpenAPI document was authored by API Evangelist from Leafly''s public ReDoc documentation (https://docs.leafly.io/menu-integration-docs/v2.html) for cataloging purposes. It reflects the documented endpoints and the item schema; it is not the vendor''s own distributed specification.'
+  description: Near-real-time menu integration API for keeping a dispensary's Leafly menu in sync with its system of record (POS).
   contact:
     name: Leafly API Support
     email: api-support@leafly.com

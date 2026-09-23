@@ -1,8 +1,7 @@
 {
   "provider": "leafly",
   "sources": [
-    "leafly-menu-api-openapi.yml",
-    "leafly-status-api-openapi.yml"
+    "_original/leafly-menu-integration-openapi.yml"
   ],
   "outputs": [
     "leafly-menu-api-openapi.yml",
@@ -11,6 +10,20 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "leafly-menu-integration-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "leafly-menu-integration-openapi.yml: tagged paths GET /{menu_integration_key}/menu -> Menu",
+    "leafly-menu-integration-openapi.yml: tagged paths POST /{menu_integration_key}/menu/items -> Menu",
+    "leafly-menu-integration-openapi.yml: tagged paths PUT /{menu_integration_key}/menu/items -> Menu",
+    "leafly-menu-integration-openapi.yml: tagged paths DELETE /{menu_integration_key}/menu/items -> Menu",
+    "leafly-menu-integration-openapi.yml: tagged paths GET /{menu_integration_key}/status -> Status",
+    "leafly-menu-integration-openapi.yml: declared missing tag: Menu",
+    "leafly-menu-integration-openapi.yml: declared missing tag: Status",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "leafly-menu-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "leafly-status-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
