@@ -83,13 +83,6 @@ paths:
       - Menu
 components:
   schemas:
-    MenuItems:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/MenuItem'
     MenuItem:
       type: object
       description: A single menu item. Strain and cannabinoid values should be set to null when absent; variants carry the inventory and pricing.
@@ -115,6 +108,13 @@ components:
           type:
           - string
           - 'null'
+    MenuItems:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/MenuItem'
   parameters:
     MenuIntegrationKey:
       name: menu_integration_key
