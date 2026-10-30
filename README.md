@@ -1,4 +1,4 @@
-# Leafly (leafly)
+# Leafly
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,91 +64,126 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Leafly is a cannabis discovery marketplace where consumers research strains, read reviews, and browse and order from licensed dispensaries and brands. For retailers and point-of-sale (POS) providers, Leafly exposes a documented **Menu Integration API** that keeps a dispensary's Leafly menu in near-real-time sync with its system of record - pushing item data, variants, inventory, pricing, strain, and cannabinoid information - and a partner-gated **Order (Reservations) API** that lets a POS system receive and manage online orders placed on Leafly.
+Leafly is a cannabis discovery marketplace where consumers research strains, read reviews, and browse and order from licensed dispensaries and brands. For retailers and point-of-sale (POS) providers, Leafly exposes a documented Menu Integration API that keeps a dispensary's Leafly menu in near-real-time sync with its system of record - pushing product/item data, variants, inventory, pricing, strain, and cannabinoid information - and a partner-gated Order (Reservations) API that lets a POS system receive and manage online orders placed on Leafly. The Menu Integration API is publicly documented (OpenAPI via ReDoc) across V1, V1.1, and V2; the Order API's full specification sits behind Cloudflare Access and is available to onboarded partners. Actual use requires a paid Leafly for Retailers subscription and a Leafly-issued menu integration key - there is no self-serve public signup or consumer-facing data API.
 
-## Access Model (read this first)
+**Areas:** Cannabis · Dispensary · Menu Sync · POS Integration · Retail · Marketplace · Strain · E-Commerce
 
-Leafly's APIs are **not a self-serve public developer platform** and there is **no consumer-facing strain/dispensary data API**. Using the APIs requires:
+## Leafly on APIs.io
 
-- A **paid Leafly for Retailers subscription** (quoted by sales; tiered by market, product selection, and service level).
-- A **Leafly-issued `menu_integration_key`** that scopes every request to one dispensary.
-- For POS / system-of-record providers, **onboarding through Partner Ops** (`partners@leafly.com`). Technical questions go to `api-support@leafly.com`.
+Everything profiled for Leafly is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/leafly/](https://apis.io/providers/leafly/)** — or go straight to one of the APIs or properties below.
 
-The **Menu Integration API is publicly documented** via ReDoc/OpenAPI (V1, V1.1, V2). The **Order API's machine-readable specification is behind Cloudflare Access** and is available to onboarded partners only, so it is cataloged here at the capability level - no endpoint surface is fabricated.
+### APIs (3)
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/leafly/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/leafly/refs/heads/main/apis.yml)
+- [Leafly Order API](https://apis.io/apis/leafly/leafly-order-api/) — Order (Reservations) API that lets any cannabis POS provider integrate Leafly online orders into its own system, taking ownership of the order integration…
+- [Leafly Menu API](https://apis.io/apis/leafly/leafly-menu-api/) — The Menu API from Leafly — 2 operation(s) for menu.
+- [Leafly Status API](https://apis.io/apis/leafly/leafly-status-api/) — The Status API from Leafly — 1 operation(s) for status.
 
-## Tags
+### Published properties
 
-- Cannabis
-- Dispensary
-- Menu Sync
-- POS Integration
-- Retail
-- Marketplace
-- Strains
-- Ecommerce
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## Timestamps
+#### Agentic access (1)
 
-- **Created:** 2026-07-03
-- **Modified:** 2026-07-03
+Which operations an agent can call, which act, and which need a human in the loop.
 
-## APIs
+- [Leafly Agentic Access](https://apis.io/agentic-access/leafly/leafly-agentic-access/)
 
-### Leafly Menu Integration API
+#### Collections (2)
 
-Near-real-time menu synchronization for dispensaries and their POS / system-of-record providers. The retailer's system pushes menu items - name, type, brand, description, strain, cannabinoid values, per-variant inventory and pricing, images, and pickup availability - so the public Leafly menu stays current.
+Postman and Open Collection request collections.
 
-- **Human URL:** [https://docs.leafly.io/menu-integration-docs/v2.html](https://docs.leafly.io/menu-integration-docs/v2.html)
-- **Base URL (V2 production):** `https://api.leafly.com/v2/menu_integration`
-- **Base URL (V2 sandbox):** `https://api-sandbox.leafly.io/v2/menu_integration`
-- **Auth:** OAuth2 client credentials (V2); API key (V1)
+- [Leafly Integration Menu API](https://apis.io/collections/leafly/open-leafly-menu-api/)
+- [Leafly Integration Menu Status API](https://apis.io/collections/leafly/open-leafly-status-api/)
 
-Documented endpoints:
+#### Security (2)
 
-- `GET    /{menu_integration_key}/menu` — read the current menu
-- `POST   /{menu_integration_key}/menu/items` — full menu synchronization
-- `PUT    /{menu_integration_key}/menu/items` — upsert items
-- `DELETE /{menu_integration_key}/menu/items` — delete items
-- `GET    /{menu_integration_key}/status` — integration status/health
+Authentication, trust centre, and vulnerability disclosure.
 
-Updates are processed asynchronously (up to ~2.5 min sandbox, ~5 min production). Recommended sync profile: a full `POST` once per day plus batched `PUT`/`DELETE` as items change.
+- [Leafly Authentication](https://apis.io/security/leafly/leafly-authentication/)
+- [Leafly Domain Security](https://apis.io/security/leafly/leafly-domain-security/)
 
-#### Properties
+#### OAuth scopes (1)
 
-- [Documentation](https://docs.leafly.io/menu-integration-docs/v2.html)
-- [API Reference](https://docs.leafly.io/menu-integration-docs/v2.html)
-- [OpenAPI](openapi/leafly-menu-integration-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+The permissions the API asks for.
 
-### Leafly Order API (Reservations)
+- [Leafly Scopes](https://apis.io/scopes/leafly/leafly-scopes/)
 
-Lets any cannabis POS provider integrate Leafly online orders into its own system. Launched in beta in 2023; requires the retailer to already run V2 of the Menu Integration API. The full reference is published via ReDoc, but the machine-readable spec is behind Cloudflare Access (partner-gated), so endpoints are documented at the capability level only.
+#### Plans and pricing (1)
 
-- **Human URL:** [https://docs.leafly.io/reservations-api/order-api/](https://docs.leafly.io/reservations-api/order-api/)
-- **Access:** partner onboarding via `partners@leafly.com`
+Published plans, tiers and prices.
 
-#### Properties
+- [Leafly Plans Pricing](https://apis.io/plans/leafly/leafly-plans-pricing/)
 
-- [Documentation](https://docs.leafly.io/reservations-api/order-api/)
-- [Announcement](https://www.businesswire.com/news/home/20230926705189/en/Leafly-Announces-New-API-for-Order-Integration)
+#### Rate limits (1)
 
-## Common Properties
+Published request limits.
+
+- [Leafly Rate Limits](https://apis.io/rate-limits/leafly/leafly-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Leafly Finops](https://apis.io/finops/leafly/leafly-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.leafly.com)
 - [Documentation](https://docs.leafly.io/menu-integration-docs/v2.html)
-- [LinkedIn](https://www.linkedin.com/company/leafly)
-- [Signup (Leafly for Retailers)](https://success.leafly.com/retail)
-- [Support (Developer FAQs)](https://help.leafly.com/hc/en-us/categories/20959505132051-Developer-FAQs)
-- [Plans](plans/leafly-plans-pricing.yml)
-- [Rate Limits](rate-limits/leafly-rate-limits.yml)
-- [Fin Ops](finops/leafly-finops.yml)
+- [Support](https://help.leafly.com/hc/en-us/categories/20959505132051-Developer-FAQs)
+- [Blog](https://www.leafly.com/feed)
 
-## WebSocket Review
+## API Evangelist rating
 
-Does Leafly expose a documented public WebSocket API? **No.** Leafly's documented API surface is request/response REST over HTTPS - a push-by-HTTP Menu Integration API and a partner-gated Order API. No WebSocket (`ws://`/`wss://`) or SSE endpoint is documented. See [review.yml](review.yml).
+**Kin Score 31.8** — thin · rubric 0.24.0 · scored 2026-10-17
 
-## Maintainers
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 45.3 |
+| Contract governance | 0.0 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 33.3 |
+| Access clarity | 18.4 |
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Agent readiness 20.8** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 21.6** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/leafly/](https://apis.io/providers/leafly/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Leafly: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/leafly/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
